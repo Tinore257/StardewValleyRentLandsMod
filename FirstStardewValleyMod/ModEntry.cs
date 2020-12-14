@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using FirstStardewValleyMod.datastructs;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -25,6 +26,7 @@ namespace FirstStardewValleyMod
 
         private SerializableDictionary<GameLocation, TerrainFeaturePairList> TerrainFeatureLocation = new SerializableDictionary<GameLocation, TerrainFeaturePairList>();
 
+        private SerializableDictionary<GameLocation, LargeTerrainFeaturePairList> LargeTerrainFeatureLocation = new SerializableDictionary<GameLocation, LargeTerrainFeaturePairList>();
 
         /*********
         ** Public methods
