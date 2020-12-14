@@ -39,6 +39,7 @@ namespace FirstStardewValleyMod
             helper.Events.GameLoop.Saving += this.OnSaving;
             helper.Events.GameLoop.DayStarted += this.OnDayStarted;
             helper.Events.World.TerrainFeatureListChanged += this.OnTerrainFeatureListChanged;
+            helper.Events.World.LargeTerrainFeatureListChanged += this.OnLargeTerrainFeaturesChanged;
             locationSerializer = new XmlSerializer(typeof(FirstStardewValleyMod.GameLocationStruct));
         }
 
@@ -249,6 +250,12 @@ namespace FirstStardewValleyMod
                     return;
                 }
             }
+        }
+
+
+        private void OnLargeTerrainFeaturesChanged(object sender, LargeTerrainFeatureListChangedEventArgs args)
+        {
+            //TODO Eric
         }
 
 
