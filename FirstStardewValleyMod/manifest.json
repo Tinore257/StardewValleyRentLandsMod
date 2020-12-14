@@ -1,0 +1,10 @@
+﻿{
+  "Name": "Tino's Test Mod",
+  "Author": "Tino_re",
+  "Version": "0.0.1",
+  "Description": "Diese Mod ist meine aller erste (test-) Mod!",
+  "UniqueID": "Tino_re.FirstStardewValleyMod",
+  "EntryDll": "FirstStardewValleyMod.dll",
+  "MinimumApiVersion": "3.0.0",
+  "UpdateKeys": []
+}

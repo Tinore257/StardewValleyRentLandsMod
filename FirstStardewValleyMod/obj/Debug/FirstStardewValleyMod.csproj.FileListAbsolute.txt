@@ -1,0 +1,9 @@
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\bin\Debug\FirstStardewValleyMod.dll
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\bin\Debug\FirstStardewValleyMod.pdb
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CoreCompileInputs.cache
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.dll
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.pdb
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\bin\Debug\Newtonsoft.Json.dll
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\bin\Debug\Newtonsoft.Json.xml
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CopyComplete
+C:\Users\andre\source\repos\FirstStardewValleyMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csprojAssemblyReference.cache
