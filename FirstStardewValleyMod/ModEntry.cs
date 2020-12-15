@@ -19,7 +19,7 @@ namespace FirstStardewValleyMod
 
         private List<GameLocationStruct> gameLocationStruct = new List<GameLocationStruct>();
 
-        private List<GameLocation> locationsList = new List<GameLocation>();
+        private List<GameLocation> locationsList = new List<GameLocation>(); 
 
 
         private XmlSerializer locationSerializer;
@@ -331,6 +331,18 @@ namespace FirstStardewValleyMod
                         if (currentLayer.Tiles[x, y] != null)
                         {
                             gameLocationStruct.Tiles.Add(new Tile(Tile.TileLayerFormString(layersName[i]), x, y, currentLayer.Tiles[x, y].TileIndex, currentLayer.Tiles[x, y].TileSheet.Id));
+
+
+                            //das koennte eine Moeglichkeit sein, an die noetigen Daten ranzukommen: Aber welche Daten genau werden damit abgerufen??
+                            //String string1 = currentLayer.Properties.ToList()[0].Key;
+
+
+                            //das ist der Neue Teil
+                            for  (int j = 0; j < currentLayer.Tiles[x, y].Properties.ToList().Count; j++)
+                            {
+                                this.Monitor.Log($"{currentLayer.Tiles[x,y].Properties.ToList()[j].Key}  - KEY : {currentLayer.Tiles[x, y].Properties.ToList()[j].Value}  VALUE", LogLevel.Warn);
+                            }
+
                         }
                     }
                 }
