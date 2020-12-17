@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using FirstStardewValleyMod.datastructs;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -25,6 +26,7 @@ namespace FirstStardewValleyMod
 
         private SerializableDictionary<GameLocation, TerrainFeaturePairList> TerrainFeatureLocation = new SerializableDictionary<GameLocation, TerrainFeaturePairList>();
 
+        private SerializableDictionary<GameLocation, LargeTerrainFeaturePairList> LargeTerrainFeatureLocation = new SerializableDictionary<GameLocation, LargeTerrainFeaturePairList>();
 
         /*********
         ** Public methods
@@ -39,6 +41,7 @@ namespace FirstStardewValleyMod
             helper.Events.GameLoop.Saving += this.OnSaving;
             helper.Events.GameLoop.DayStarted += this.OnDayStarted;
             helper.Events.World.TerrainFeatureListChanged += this.OnTerrainFeatureListChanged;
+            helper.Events.World.LargeTerrainFeatureListChanged += this.OnLargeTerrainFeaturesChanged;
             locationSerializer = new XmlSerializer(typeof(FirstStardewValleyMod.GameLocationStruct));
         }
 
@@ -249,6 +252,12 @@ namespace FirstStardewValleyMod
                     return;
                 }
             }
+        }
+
+
+        private void OnLargeTerrainFeaturesChanged(object sender, LargeTerrainFeatureListChangedEventArgs args)
+        {
+            //TODO Eric
         }
 
 
