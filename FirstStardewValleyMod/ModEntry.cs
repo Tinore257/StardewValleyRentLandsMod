@@ -17,22 +17,16 @@ namespace FirstStardewValleyMod
     public class ModEntry : Mod
     {
 
-        private List<GameLocationStruct> gameLocationStruct = new List<GameLocationStruct>();
+        private List<GameLocationStruct> modGameLocationStruct = new List<GameLocationStruct>();
 
-        private List<GameLocation> locationsList = new List<GameLocation>(); 
-
+        private List<GameLocation> modLocationsList = new List<GameLocation>(); 
 
         private XmlSerializer locationSerializer;
 
-        private SerializableDictionary<GameLocation, TerrainFeaturePairList> TerrainFeatureLocation = new SerializableDictionary<GameLocation, TerrainFeaturePairList>();
+        private SerializableDictionary<String, TerrainFeaturePairList> TerrainFeatureLocation = new SerializableDictionary<String, TerrainFeaturePairList>();
 
-        private SerializableDictionary<GameLocation, LargeTerrainFeaturePairList> LargeTerrainFeatureLocation = new SerializableDictionary<GameLocation, LargeTerrainFeaturePairList>();
+        private SerializableDictionary<String, LargeTerrainFeaturePairList> LargeTerrainFeatureLocation = new SerializableDictionary<String, LargeTerrainFeaturePairList>();
 
-        /*********
-        ** Public methods
-        *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides simplified APIs for writing mods.</param>
         public override void Entry(IModHelper helper)
         {
             helper.Events.Input.ButtonPressed += this.OnButtonPressed;
@@ -46,38 +40,23 @@ namespace FirstStardewValleyMod
         }
 
 
-        /*********
-        ** Private methods
-        *********/
-        /// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
         private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
         {
             // ignore if player hasn't loaded a save yet
             if (!Context.IsWorldReady)
                 return;
 
-            // print button presses to the console window
-            //this.Monitor.Log($"{Game1.player.Name} pressed {e.Button}.", LogLevel.Debug);
-
             if (e.Button.Equals(SButton.OemPlus))
             {
                 this.Monitor.Log($"{Game1.player.Name} ist ein Cheater!", LogLevel.Warn);
-                //  Game1.player.Money += 100;
                 Game1.playSound("purchase");
                 Game1.addHUDMessage(new HUDMessage("+100", 4));
-                //Game1.player.addedSpeed +=100;
-                //Game1.dayOfMonth++;
             }
             else if (e.Button.Equals(SButton.OemMinus))
             {
                 this.Monitor.Log($"{Game1.player.Name} ist ein dummer Cheater!", LogLevel.Warn);
-                // Game1.player.Money -= 100;
                 Game1.playSound("purchase");
                 Game1.addHUDMessage(new HUDMessage("-100", 3));
-                //Game1.dayOfMonth--;
-                //Game1.player.addedSpeed-= 100;
             }
 
         }
@@ -85,6 +64,12 @@ namespace FirstStardewValleyMod
 
         private void OnSaveLoaded(object sender, SaveLoadedEventArgs args)
         {
+            /* Beschreibung der Methode: Wenn keine Welt in der Save File existiert, dann soll eine neue Welt erstellt werden
+             * Da in der finalen Mod erst bei einem bestimmten Event die neue Location generiert werden soll, kann das eventuell 
+             * spaeter in eine andere Methode uebertragen werden. Zum konkreten generieren der Map soll ein entsprechender Generator
+             * aus den locationGenerators genutzt werden. 
+             */
+
 
             this.Monitor.Log($"{Game1.player.Name} ES WIRD EINE SAVE GELADEN!!", LogLevel.Warn);
             // get the internal asset key for the map file
@@ -164,15 +149,10 @@ namespace FirstStardewValleyMod
 
             for (int i = 0; i < Game1.locations.Count; i++)
             {
-                if (Game1.locations[i] != null)
-                {
-                    //.Monitor.Log($"{Game1.locations[i]} - es wurde eine Location gefunden beim Saven!", LogLevel.Warn);
-                }
                 if (Game1.locations[i] != null && Game1.locations[i].name.Equals("YourLocationName"))
                 {
                     Game1.locations.RemoveAt(i);
                 }
-
             }
 
         }
@@ -204,16 +184,6 @@ namespace FirstStardewValleyMod
                 load(location, gameLocationStruct);
                 Game1.locations.Add(location);
 
-                for (int x = 0; x < 100; x++)
-                {
-                    for (int y = 0; y < 100; y++)
-                    {
-                        // int tileId =  Int32.Parse(loeadedMap.GetLayer("Back").Tiles[x, y].Id);
-                        int tileId = 175;
-                        Layer layer1 = location.map.GetLayer("Back");
-                        location.setTileProperty(x, y, "Back", "Diggable", "T");
-                    }
-                }
                 return;
 
             }
@@ -236,16 +206,25 @@ namespace FirstStardewValleyMod
             {
                 if (Game1.locations[i] != null && Game1.locations[i].name.Equals("YourLocationName") && args.Added.Count() > 0)
                 {
-                    //Game1.locations[i].terrainFeatures.Add(args.Added.ToArray()[0].Key, args.Added.ToArray()[0].Value);
-                    if (!TerrainFeatureLocation.ContainsKey(Game1.locations[i]))
-                        TerrainFeatureLocation.Add(Game1.locations[i], new TerrainFeaturePairList());
+
+                    bool gefunden = false;
+                    for (int j = 0; j < TerrainFeatureLocation.Count(); j++)
+                    {
+                        if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[j].Equals(Game1.locations[i].name))
+                        {
+                            gefunden = true;
+                        }
+                    }
+
+
+                    if (!gefunden)
+                        TerrainFeatureLocation.Add(Game1.locations[i].name, new TerrainFeaturePairList());
 
                     for (int j = 0; j < TerrainFeatureLocation.Count(); j++)
                     {
-                        if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[j].name.Equals(Game1.locations[i].name))
+                        if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[j].Equals(Game1.locations[i].name))
                         {
-                            TerrainFeatureLocation.Values.ToArray()[j].terrainFeaturePairs.Add( new TerrainFeaturePair(args.Added.ToArray()[0].Key, args.Added.ToArray()[0].Value));
-                            
+                            TerrainFeatureLocation.Values.ToArray()[j].terrainFeaturePairs.Add( new TerrainFeaturePair(args.Added.ToArray()[0].Key, args.Added.ToArray()[0].Value));                           
                         }
                     }
 
@@ -296,16 +275,32 @@ namespace FirstStardewValleyMod
                 foreach (KeyValuePair<Vector2, TerrainFeature> terrainFeature in gameLocationStruct.terrainFeatures)
                 {
                     gameLocation.terrainFeatures.Add(terrainFeature.Key, terrainFeature.Value);
+
+
+
+                    if (!TerrainFeatureLocation.ContainsKey(gameLocationStruct.name))
+                        TerrainFeatureLocation.Add(gameLocationStruct.name, new TerrainFeaturePairList());
+                    for (int j = 0; j < TerrainFeatureLocation.Count(); j++)
+                    {
+                        if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[j].Equals(gameLocationStruct.name))
+                        {
+                            TerrainFeatureLocation.Values.ToArray()[j].terrainFeaturePairs.Add(new TerrainFeaturePair(terrainFeature.Key, terrainFeature.Value));
+                        }
+                    }
                 }
             }
 
 
-            for (int x = 0; x < 100; x++)
+
+
+            for (int i = 0; i < gameLocationStruct.Tiles.Count; i++)
             {
-                for (int y = 0; y < 100; y++)
+                for (int j = 0; j < gameLocationStruct.Tiles[i].tileProperties.Count; j++)
                 {
-                    gameLocation.setTileProperty(x, y, "Back", "Diggable", "T");
+                    gameLocation.setTileProperty(gameLocationStruct.Tiles[i].X, gameLocationStruct.Tiles[i].Y, gameLocationStruct.Tiles[i].tileProperties[j].layer, gameLocationStruct.Tiles[i].tileProperties[j].key, gameLocationStruct.Tiles[i].tileProperties[j].value);
+                    //gameLocationStruct.Tiles[i].tileProperties
                 }
+                
             }
         }
 
@@ -314,6 +309,8 @@ namespace FirstStardewValleyMod
         {
             GameLocationStruct gameLocationStruct = new GameLocationStruct();
             gameLocationStruct.terrainFeatures = new SerializableDictionary<Vector2, TerrainFeature>();
+
+            gameLocationStruct.name = gameLocation.name;
 
             String[] layersName = { "Back", "Buildings", "Paths", "Front", "AlwaysFront" };
             for (int i = 0; i < layersName.Length; i++)
@@ -330,7 +327,9 @@ namespace FirstStardewValleyMod
                     {
                         if (currentLayer.Tiles[x, y] != null)
                         {
-                            gameLocationStruct.Tiles.Add(new Tile(Tile.TileLayerFormString(layersName[i]), x, y, currentLayer.Tiles[x, y].TileIndex, currentLayer.Tiles[x, y].TileSheet.Id));
+
+                            Tile currentTile = new Tile(Tile.TileLayerFormString(layersName[i]), x, y, currentLayer.Tiles[x, y].TileIndex, currentLayer.Tiles[x, y].TileSheet.Id);
+                            gameLocationStruct.Tiles.Add(currentTile);
 
 
                             //das koennte eine Moeglichkeit sein, an die noetigen Daten ranzukommen: Aber welche Daten genau werden damit abgerufen??
@@ -340,7 +339,8 @@ namespace FirstStardewValleyMod
                             //das ist der Neue Teil
                             for  (int j = 0; j < currentLayer.Tiles[x, y].Properties.ToList().Count; j++)
                             {
-                                this.Monitor.Log($"{currentLayer.Tiles[x,y].Properties.ToList()[j].Key}  - KEY : {currentLayer.Tiles[x, y].Properties.ToList()[j].Value}  VALUE", LogLevel.Warn);
+                                //this.Monitor.Log($"{currentLayer.Tiles[x,y].Properties.ToList()[j].Key}  - KEY : {currentLayer.Tiles[x, y].Properties.ToList()[j].Value}  VALUE", LogLevel.Warn);
+                                currentTile.tileProperties.Add(new TilePropertie(currentLayer.ToString(), currentLayer.Tiles[x, y].Properties.ToList()[j].Key, currentLayer.Tiles[x, y].Properties.ToList()[j].Value));
                             }
 
                         }
@@ -350,7 +350,7 @@ namespace FirstStardewValleyMod
 
             for (int j = 0; j < TerrainFeatureLocation.Count(); j++)
             {
-                if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[j].name.Equals(gameLocation.name))
+                if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[j].Equals(gameLocation.name))
                 {
                     // TerrainFeatureLocation.Values.ToArray()[j].terrainFeature.Add(args.Added.ToArray()[0].Value);
                     for (int k = 0; k < TerrainFeatureLocation.Values.ToList()[j].terrainFeaturePairs.Count(); k++)
