@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FirstStardewValleyMod.datastructs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,8 @@ namespace FirstStardewValleyMod
         /// <summary>The tilesheet for the <see cref="TileID"/>.</summary>
         public string Tilesheet { get; }
 
+        public List<TilePropertie> tileProperties;
+
         
         public Tile()
         {
@@ -48,6 +51,7 @@ namespace FirstStardewValleyMod
         /// <param name="tilesheet">The tilesheet for the <paramref name="tileID"/>.</param>
         public Tile(TileLayer layer, int x, int y, int tileID, string tilesheet)
         {
+            this.tileProperties = new List<TilePropertie>();
             this.Layer = layer;
             this.LayerName = layer.ToString();
             this.X = x;

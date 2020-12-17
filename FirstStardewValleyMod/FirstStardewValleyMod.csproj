@@ -56,12 +56,14 @@
     <Compile Include="datastructs\GameLocationStruct.cs" />
     <Compile Include="datastructs\LargeTerrainFeaturePair.cs" />
     <Compile Include="datastructs\LargeTerrainFeaturePairList.cs" />
+    <Compile Include="datastructs\TilePropertie.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="datastructs\TerrainFeaturePair.cs" />
     <Compile Include="datastructs\TerrainFeaturePairList.cs" />
     <Compile Include="datastructs\Tile.cs" />
     <Compile Include="datastructs\TileLayer.cs" />
+    <Compile Include="locationGenerators\standardGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\myModMap1.tmx" />

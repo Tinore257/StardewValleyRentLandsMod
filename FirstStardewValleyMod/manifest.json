@@ -1,9 +1,9 @@
 ﻿{
-  "Name": "Tino's Test Mod",
-  "Author": "Tino_re",
-  "Version": "0.0.1",
-  "Description": "Diese Mod ist meine aller erste (test-) Mod!",
-  "UniqueID": "Tino_re.FirstStardewValleyMod",
+  "Name": "Rent'n'buy lands",
+  "Author": "Tino_re, Cpt.Iglo",
+  "Version": "0.0.2",
+  "Description": "This mod extends the Farm by individually generated Farmland, that you can eather buy or rent!",
+  "UniqueID": "Tino_reCpt.Iglo.FirstStardewValleyMod",
   "EntryDll": "FirstStardewValleyMod.dll",
   "MinimumApiVersion": "3.0.0",
   "UpdateKeys": []
