@@ -237,6 +237,39 @@ namespace FirstStardewValleyMod
         private void OnLargeTerrainFeaturesChanged(object sender, LargeTerrainFeatureListChangedEventArgs args)
         {
             //TODO Eric
+            if (!args.Location.name.Equals("YourLocationName"))
+                return;
+
+            this.Monitor.Log($"{args} LargeTerrainFeatureListChanged!!", LogLevel.Warn);
+            for (int i = 0; i < Game1.locations.Count; i++)
+            {
+                if (Game1.locations[i] != null && Game1.locations[i].name.Equals("YourLocationName") && args.Added.Count() > 0)
+                {
+
+                    bool gefunden = false;
+                    for (int j = 0; j < LargeTerrainFeatureLocation.Count(); j++)
+                    {
+                        if (LargeTerrainFeatureLocation.Keys != null && LargeTerrainFeatureLocation.Keys.ToArray()[j].Equals(Game1.locations[i].name))
+                        {
+                            gefunden = true;
+                        }
+                    }
+
+
+                    if (!gefunden)
+                        LargeTerrainFeatureLocation.Add(Game1.locations[i].name, new LargeTerrainFeaturePairList());
+
+                    for (int j = 0; j < LargeTerrainFeatureLocation.Count(); j++)
+                    {
+                        if (LargeTerrainFeatureLocation.Keys != null && LargeTerrainFeatureLocation.Keys.ToArray()[j].Equals(Game1.locations[i].name))
+                        {
+                            LargeTerrainFeatureLocation.Values.ToArray()[j].LargeterrainFeaturePairs.Add(new LargeTerrainFeaturePair(args.Added.ToArray()[0].currentTileLocation, args.Added.ToArray()[0].currentLocation.getLargeTerrainFeatureAt(i,j)));
+                        }
+                    }
+
+                    return;
+                }
+            }
         }
 
 
