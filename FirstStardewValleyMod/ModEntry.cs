@@ -116,6 +116,12 @@ namespace FirstStardewValleyMod
                 }
             }
 
+
+            for (int i = 0; i < 20; i++)
+            {
+                location.terrainFeatures.Add(new Vector2(random.Next() * 20, random.Next() * 20), new Bush());
+            }
+
             Game1.locations.Add(location);
         }
 
@@ -263,7 +269,6 @@ namespace FirstStardewValleyMod
                     {
                         if (LargeTerrainFeatureLocation.Keys != null && LargeTerrainFeatureLocation.Keys.ToArray()[j].Equals(Game1.locations[i].name))
                         {
-                            //hier
                             LargeTerrainFeatureLocation.Values.ToArray()[j].LargeterrainFeaturePairs.Add(new LargeTerrainFeaturePair(args.Added.ToArray()[0].currentTileLocation, args.Added.ToArray()[0].currentLocation.getLargeTerrainFeatureAt(i,j)));
                         }
                     }
@@ -294,7 +299,8 @@ namespace FirstStardewValleyMod
             {
                 Tile currentTile = gameLocationStruct.Tiles[i];
                 String currentLayerString = currentTile.LayerName;
-
+                if(currentLayerString == null)
+                    continue;
                 Layer layer1 = gameLocation.map.GetLayer(currentLayerString);
                 if (layer1 == null)
                     continue;
@@ -322,8 +328,7 @@ namespace FirstStardewValleyMod
                         }
                     }
                 }
-            }
-
+            }       
 
 
 
