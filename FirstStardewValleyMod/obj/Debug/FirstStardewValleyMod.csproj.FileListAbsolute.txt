@@ -34,3 +34,12 @@ C:\Users\Cpt.Iglo\Source\Repos\Tinore257\StardewValleyRentLandsMod\FirstStardewV
 C:\Users\Cpt.Iglo\Source\Repos\Tinore257\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CopyComplete
 C:\Users\Cpt.Iglo\Source\Repos\Tinore257\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.dll
 C:\Users\Cpt.Iglo\Source\Repos\Tinore257\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.pdb
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\FirstStardewValleyMod.dll
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\FirstStardewValleyMod.pdb
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\Newtonsoft.Json.xml
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csprojAssemblyReference.cache
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CoreCompileInputs.cache
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CopyComplete
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.dll
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.pdb

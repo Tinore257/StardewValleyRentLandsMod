@@ -118,7 +118,7 @@ namespace FirstStardewValleyMod
 
             for (int i = 0; i < 20; i++)
             {
-                location.terrainFeatures.Add(new Vector2(random.Next() * 20, random.Next() * 20), new Bush());
+                location.largeTerrainFeatures.Add(new Bush(new Vector2(random.Next() * 20, random.Next() * 20), 1, location));
             }
 
             Game1.locations.Add(location);
