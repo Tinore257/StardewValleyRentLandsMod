@@ -16,6 +16,17 @@ C:\Users\andre\Source\Repos\Tinore257\StardewValleyRentLandsMod\FirstStardewVall
 C:\Users\andre\Source\Repos\Tinore257\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CopyComplete
 C:\Users\andre\Source\Repos\Tinore257\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.dll
 C:\Users\andre\Source\Repos\Tinore257\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.pdb
+<<<<<<< HEAD
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\FirstStardewValleyMod.dll
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\FirstStardewValleyMod.pdb
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\Newtonsoft.Json.xml
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csprojAssemblyReference.cache
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CoreCompileInputs.cache
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CopyComplete
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.dll
+C:\Users\tireo\Desktop\Source code\smapi\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.pdb
+=======
 C:\Users\Cpt.Iglo\source\repos\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\FirstStardewValleyMod.dll
 C:\Users\Cpt.Iglo\source\repos\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\FirstStardewValleyMod.pdb
 C:\Users\Cpt.Iglo\source\repos\StardewValleyRentLandsMod\FirstStardewValleyMod\bin\Debug\Newtonsoft.Json.dll
@@ -25,3 +36,4 @@ C:\Users\Cpt.Iglo\source\repos\StardewValleyRentLandsMod\FirstStardewValleyMod\o
 C:\Users\Cpt.Iglo\source\repos\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.csproj.CopyComplete
 C:\Users\Cpt.Iglo\source\repos\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.dll
 C:\Users\Cpt.Iglo\source\repos\StardewValleyRentLandsMod\FirstStardewValleyMod\obj\Debug\FirstStardewValleyMod.pdb
+>>>>>>> f41c0873c2bf06e64eb908692e1901b02af5d46d

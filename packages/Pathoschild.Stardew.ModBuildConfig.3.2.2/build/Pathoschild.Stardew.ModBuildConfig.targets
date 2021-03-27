@@ -8,6 +8,7 @@
   ** Set build options
   **********************************************-->
   <PropertyGroup>
+    <GamePath>D:\Program Files (x86)\Steam\steamapps\common\Stardew Valley</GamePath>
     <!-- include PDB file by default to enable line numbers in stack traces -->
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
