@@ -1,2 +1,8 @@
-FirstStardewValleyMod\FirstStardewValleyMod.csproj
-.vs\
+FirstStardewValleyMod/FirstStardewValleyMod.csproj
+*.csproj
+FirstStardewValleyMod/packages.config
+FirstStardewValleyMod/bin/
+FirstStardewValleyMod/obj/
+FirstStardewValleyMod/Properties/
+.vs/
+packages/
