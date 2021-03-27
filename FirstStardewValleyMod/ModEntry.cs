@@ -126,10 +126,15 @@ namespace FirstStardewValleyMod
             for (int i = 0; i < 20; i++)
             {
                 Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Add(new Bush(new Vector2(random.Next() * 20, random.Next() * 20), 1, Game1.getLocationFromName("YourLocationName")));
-                Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(random.Next() * 20, random.Next() * 20), new Grass());
-                Game1.getLocationFromName("YourLocationName").setObjectAt(random.Next() * 20, random.Next() * 20, new StardewValley.Object());
+                Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(random.Next(1, 20), random.Next(1, 20)), new Tree(1, 2));
+               // Game1.getLocationFromName("YourLocationName").setObjectAt()
+                int x = random.Next(1,20);
+                int y = random.Next(1, 20);
+                Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Add(new Bush(new Vector2(x, y), 1, Game1.getLocationFromName("YourLocationName")));
+                //  Game1.getLocationFromName("YourLocationName").setObjectAt(x, y, new Fence(new Vector2(x,y),1,false));
+                //  Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(x, y), new Tree(1, 1));          
                 //.getLocationFromName("YourLocationName").setTileProperty();
-                Game1.getLocationFromName("YourLocationName").updateMap();
+                // Game1.getLocationFromName("YourLocationName").updateMap();
             }
         }
 
