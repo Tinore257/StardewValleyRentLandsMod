@@ -38,8 +38,7 @@ namespace FirstStardewValleyMod
             helper.Events.World.LargeTerrainFeatureListChanged += this.OnLargeTerrainFeaturesChanged;
             locationSerializer = new XmlSerializer(typeof(FirstStardewValleyMod.GameLocationStruct));
         }
-
-
+//lol
         private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
         {
             // ignore if player hasn't loaded a save yet
