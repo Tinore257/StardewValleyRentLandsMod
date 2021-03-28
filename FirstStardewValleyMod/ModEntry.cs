@@ -126,7 +126,7 @@ namespace FirstStardewValleyMod
             for (int i = 0; i < 20; i++)
             {
                 Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Add(new Bush(new Vector2(random.Next() * 20, random.Next() * 20), 1, Game1.getLocationFromName("YourLocationName")));
-                Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(random.Next(1, 20), random.Next(1, 20)), new Tree(1, 2));
+                Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(random.Next(1, 20), random.Next(1, 20)), new Tree(1, 3));
                // Game1.getLocationFromName("YourLocationName").setObjectAt()
                 int x = random.Next(1,20);
                 int y = random.Next(1, 20);
@@ -341,7 +341,28 @@ namespace FirstStardewValleyMod
                         }
                     }
                 }
-            }       
+            }
+
+            if (gameLocationStruct.largeTerrainFeatures != null)
+            {
+                this.Monitor.Log($"{gameLocationStruct.largeTerrainFeatures.Keys.ToList().Count} ist die Anzahl der LargeTerrainFeatures!!", LogLevel.Warn);
+                foreach (KeyValuePair<Vector2, LargeTerrainFeature> largeTerrainFeature in gameLocationStruct.largeTerrainFeatures)
+                {
+                    gameLocation.largeTerrainFeatures.Add(largeTerrainFeature.Value);
+
+
+
+                    if (!LargeTerrainFeatureLocation.ContainsKey(gameLocationStruct.name))
+                        LargeTerrainFeatureLocation.Add(gameLocationStruct.name, new LargeTerrainFeaturePairList());
+                    for (int j = 0; j < LargeTerrainFeatureLocation.Count(); j++)
+                    {
+                        if (LargeTerrainFeatureLocation.Keys != null && LargeTerrainFeatureLocation.Keys.ToArray()[j].Equals(gameLocationStruct.name))
+                        {
+                            LargeTerrainFeatureLocation.Values.ToArray()[j].LargeterrainFeaturePairs.Add(new LargeTerrainFeaturePair(largeTerrainFeature.Key, largeTerrainFeature.Value));
+                        }
+                    }
+                }
+            }
 
 
 
