@@ -460,7 +460,7 @@ namespace FirstStardewValleyMod
 
             for (int i = 0; i < gameLocation.largeTerrainFeatures.ToList().Count; i++) //(SerializableDictionary<Vector2, TerrainFeature>.KeyCollection terrainFeature in gameLocation.terrainFeatures)
             {
-                //WTF?! My brain is fucked!
+                //WTF?! My brain is fucked! LOL
                 gameLocationStruct.largeTerrainFeatures.Add(gameLocation.largeTerrainFeatures[i].tilePosition, gameLocation.largeTerrainFeatures[i]);
             }
 
