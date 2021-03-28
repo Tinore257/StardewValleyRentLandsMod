@@ -424,7 +424,7 @@ namespace FirstStardewValleyMod
 
             for (int i = 0; i < TerrainFeatureLocation.Count(); i++)
             {
-                if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[j].Equals(gameLocation.name))
+                if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[i].Equals(gameLocation.name))
                 {
                     // TerrainFeatureLocation.Values.ToArray()[j].terrainFeature.Add(args.Added.ToArray()[0].Value);
                     for (int j = 0; j < TerrainFeatureLocation.Values.ToList()[i].terrainFeaturePairs.Count(); j++)
