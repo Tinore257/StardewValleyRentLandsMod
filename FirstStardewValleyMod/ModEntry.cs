@@ -382,6 +382,7 @@ namespace FirstStardewValleyMod
         {
             GameLocationStruct gameLocationStruct = new GameLocationStruct();
             gameLocationStruct.terrainFeatures = new SerializableDictionary<Vector2, TerrainFeature>();
+            gameLocationStruct.largeTerrainFeatures = new SerializableDictionary<Vector2, LargeTerrainFeature>();
 
             gameLocationStruct.name = gameLocation.name;
 
@@ -421,24 +422,24 @@ namespace FirstStardewValleyMod
                 }
             }
 
-            for (int j = 0; j < TerrainFeatureLocation.Count(); j++)
+            for (int i = 0; i < TerrainFeatureLocation.Count(); i++)
             {
                 if (TerrainFeatureLocation.Keys != null && TerrainFeatureLocation.Keys.ToArray()[j].Equals(gameLocation.name))
                 {
                     // TerrainFeatureLocation.Values.ToArray()[j].terrainFeature.Add(args.Added.ToArray()[0].Value);
-                    for (int k = 0; k < TerrainFeatureLocation.Values.ToList()[j].terrainFeaturePairs.Count(); k++)
+                    for (int j = 0; j < TerrainFeatureLocation.Values.ToList()[i].terrainFeaturePairs.Count(); j++)
                     {
-                        if (!gameLocationStruct.terrainFeatures.ContainsKey(TerrainFeatureLocation.Values.ToList()[j].terrainFeaturePairs[k].vector2))
-                            gameLocationStruct.terrainFeatures.Add(TerrainFeatureLocation.Values.ToList()[j].terrainFeaturePairs[k].vector2, TerrainFeatureLocation.Values.ToList()[j].terrainFeaturePairs[k].terrainFeature);
+                        if (!gameLocationStruct.terrainFeatures.ContainsKey(TerrainFeatureLocation.Values.ToList()[i].terrainFeaturePairs[j].vector2))
+                            gameLocationStruct.terrainFeatures.Add(TerrainFeatureLocation.Values.ToList()[i].terrainFeaturePairs[j].vector2, TerrainFeatureLocation.Values.ToList()[i].terrainFeaturePairs[j].terrainFeature);
                     }
                 }
             }
 
             this.Monitor.Log($"{gameLocation.terrainFeatures.Keys.ToList().Count} ist die Anzahl der TerrainFeatures beim saven!!", LogLevel.Warn);
 
-            for (int j = 0; j < gameLocation.terrainFeatures.Keys.ToList().Count; j++) //(SerializableDictionary<Vector2, TerrainFeature>.KeyCollection terrainFeature in gameLocation.terrainFeatures)
+            for (int i = 0; i < gameLocation.terrainFeatures.Keys.ToList().Count; i++) //(SerializableDictionary<Vector2, TerrainFeature>.KeyCollection terrainFeature in gameLocation.terrainFeatures)
             {
-                gameLocationStruct.terrainFeatures.Add(gameLocation.terrainFeatures.Keys.ToList()[j], gameLocation.terrainFeatures.Values.ToList()[j]);
+                gameLocationStruct.terrainFeatures.Add(gameLocation.terrainFeatures.Keys.ToList()[i], gameLocation.terrainFeatures.Values.ToList()[i]);
             }
 
             return gameLocationStruct;
