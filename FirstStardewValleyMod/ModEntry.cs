@@ -442,6 +442,29 @@ namespace FirstStardewValleyMod
                 gameLocationStruct.terrainFeatures.Add(gameLocation.terrainFeatures.Keys.ToList()[i], gameLocation.terrainFeatures.Values.ToList()[i]);
             }
 
+
+            for (int i = 0; i < LargeTerrainFeatureLocation.Count(); i++)
+            {
+                if (LargeTerrainFeatureLocation.Keys != null && LargeTerrainFeatureLocation.Keys.ToArray()[i].Equals(gameLocation.name))
+                {
+                    // TerrainFeatureLocation.Values.ToArray()[j].terrainFeature.Add(args.Added.ToArray()[0].Value);
+                    for (int j = 0; j < LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs.Count(); j++)
+                    {
+                        if (!gameLocationStruct.terrainFeatures.ContainsKey(LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].vector2))
+                            gameLocationStruct.terrainFeatures.Add(LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].vector2, LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].largeterrainFeature);
+                    }
+                }
+            }
+
+            this.Monitor.Log($"{gameLocation.largeTerrainFeatures.ToList().Count} ist die Anzahl der TerrainFeatures beim saven!!", LogLevel.Warn);
+
+            for (int i = 0; i < gameLocation.largeTerrainFeatures.ToList().Count; i++) //(SerializableDictionary<Vector2, TerrainFeature>.KeyCollection terrainFeature in gameLocation.terrainFeatures)
+            {
+                //WTF?! My brain is fucked!
+                gameLocationStruct.largeTerrainFeatures.Add(gameLocation.largeTerrainFeatures[i].tilePosition, gameLocation.largeTerrainFeatures[i]);
+            }
+
+
             return gameLocationStruct;
         }
 
