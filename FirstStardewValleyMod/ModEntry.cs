@@ -364,11 +364,15 @@ namespace FirstStardewValleyMod
 
             if (gameLocationStruct.largeTerrainFeatures != null)
             {
+                foreach (LargeTerrainFeature largeTerrainFeature in gameLocationStruct.largeTerrainFeatures.Values)
+                {
+                    largeTerrainFeature.currentLocation = gameLocation;
+                }
                 this.Monitor.Log($"{gameLocationStruct.largeTerrainFeatures.Keys.ToList().Count} ist die Anzahl der LargeTerrainFeatures!!", LogLevel.Warn);
                 foreach (KeyValuePair<Vector2, LargeTerrainFeature> largeTerrainFeature in gameLocationStruct.largeTerrainFeatures)
                 {
                     gameLocation.largeTerrainFeatures.Add(largeTerrainFeature.Value);
-
+                    //gameLocation.largeTerrainFeatures.Add(new Bush(largeTerrainFeature.Value.tilePosition,1, gameLocation));
 
 
                     if (!LargeTerrainFeatureLocation.ContainsKey(gameLocationStruct.name))
@@ -381,6 +385,7 @@ namespace FirstStardewValleyMod
                         }
                     }
                 }
+
             }
 
 
