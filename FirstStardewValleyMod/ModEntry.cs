@@ -205,6 +205,9 @@ namespace FirstStardewValleyMod
                             int x = random.Next(1, 20);
                             int y = random.Next(1, 20);
                             Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Add(new Bush(new Vector2(x, y), 1, Game1.getLocationFromName("YourLocationName")));
+                            x = random.Next(1, 20);
+                            y = random.Next(1, 20);
+                            Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(x, y), new Grass());
                         }
                         catch (Exception e)
                         {
