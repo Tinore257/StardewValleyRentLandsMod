@@ -371,9 +371,15 @@ namespace FirstStardewValleyMod
                 this.Monitor.Log($"{gameLocationStruct.largeTerrainFeatures.Keys.ToList().Count} ist die Anzahl der LargeTerrainFeatures!!", LogLevel.Warn);
                 foreach (KeyValuePair<Vector2, LargeTerrainFeature> largeTerrainFeature in gameLocationStruct.largeTerrainFeatures)
                 {
-                    gameLocation.largeTerrainFeatures.Add(largeTerrainFeature.Value);
-                    //gameLocation.largeTerrainFeatures.Add(new Bush(largeTerrainFeature.Value.tilePosition,1, gameLocation));
-
+                    //gameLocation.largeTerrainFeatures.Add(largeTerrainFeature.Value); //TODO: ueberdenken?
+                    try
+                    {
+                        gameLocation.largeTerrainFeatures.Add(new Bush(largeTerrainFeature.Value.tilePosition, ((Bush)largeTerrainFeature.Value).size, gameLocation));
+                    } 
+                    catch(Exception e)
+                    {
+                        gameLocation.largeTerrainFeatures.Add(largeTerrainFeature.Value);
+                    }                  
 
                     if (!LargeTerrainFeatureLocation.ContainsKey(gameLocationStruct.name))
                         LargeTerrainFeatureLocation.Add(gameLocationStruct.name, new LargeTerrainFeaturePairList());
