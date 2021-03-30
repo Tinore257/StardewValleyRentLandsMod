@@ -72,70 +72,13 @@ namespace FirstStardewValleyMod
 
             this.Monitor.Log($"{Game1.player.Name} ES WIRD EINE SAVE GELADEN!!", LogLevel.Warn);
             // get the internal asset key for the map file
-            string mapAssetKey = this.Helper.Content.GetActualAssetKey("assets/myModMap2.tmx", ContentSource.ModFolder);
-            // add the location
-            GameLocation location = new GameLocation(mapAssetKey, "YourLocationName") { IsOutdoors = true, IsFarm = false };
+            
 
+          
 
-            string tilesheetPath = this.Helper.Content.GetActualAssetKey("assets/spring_outdoorsTileSheet.png", ContentSource.ModFolder);
+            
 
-            TileSheet tilesheet = new TileSheet(
-                 id: "z_your-custom-spritesheet", // a unique ID for the tilesheet
-                map: location.map,
-                imageSource: tilesheetPath,
-                sheetSize: new xTile.Dimensions.Size(25, 79), // the tile size of your tilesheet image.
-                tileSize: new xTile.Dimensions.Size(16, 16) // should always be 16x16 for maps
-            );
-            location.map.AddTileSheet(tilesheet);
-            location.map.LoadTileSheets(Game1.mapDisplayDevice);
-
-            Random random = new Random();
-            int[] alternativeGrasses = { 150, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, 255, 402, 402, 402, 402, 402, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, };
-            for (int x = 0; x < 100; x++)
-            {
-                for (int y = 0; y < 100; y++)
-                {
-                    int tileId = alternativeGrasses[random.Next(0, alternativeGrasses.Length - 1)];
-                    Layer layer1 = location.map.GetLayer("Back");
-
-                    layer1.Tiles[x, y] = new StaticTile(layer1, tilesheet, BlendMode.Alpha, tileIndex: tileId); // change tile index
-                    location.setTileProperty(x, y, "Back", "Diggable", "T");
-                }
-            }
-
-            Layer layer = location.map.GetLayer("Buildings");
-            for (int x = 0; x < 100; x++)
-            {
-                for (int y = 0; y < 100; y++)
-                {
-                    if ((x == 0) || (y == 0) || (x == 99) || (y == 99))
-                    {
-                        layer.Tiles[x, y] = new StaticTile(layer, tilesheet, BlendMode.Alpha, tileIndex: 330); // change tile index
-                    }
-                }
-            }
-
-
-            for (int i = 0; i < 20; i++)
-            {
-                location.largeTerrainFeatures.Add(new Bush(new Vector2(random.Next() * 20, random.Next() * 20), 1, location));
-            }
-
-            Game1.locations.Add(location);
-
-            for (int i = 0; i < 20; i++)
-            {
-                Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Add(new Bush(new Vector2(random.Next() * 20, random.Next() * 20), 1, Game1.getLocationFromName("YourLocationName")));
-                Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(random.Next(1, 20), random.Next(1, 20)), new Tree(1, 3));
-               // Game1.getLocationFromName("YourLocationName").setObjectAt()
-                int x = random.Next(1,20);
-                int y = random.Next(1, 20);
-                Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Add(new Bush(new Vector2(x, y), 1, Game1.getLocationFromName("YourLocationName")));
-                //  Game1.getLocationFromName("YourLocationName").setObjectAt(x, y, new Fence(new Vector2(x,y),1,false));
-                //  Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(x, y), new Tree(1, 1));          
-                //.getLocationFromName("YourLocationName").setTileProperty();
-                // Game1.getLocationFromName("YourLocationName").updateMap();
-            }
+           
         }
 
 
@@ -180,7 +123,10 @@ namespace FirstStardewValleyMod
         private void OnDayStarted(object sender, DayStartedEventArgs args)
         {
 
-            if (Helper.Data.ReadSaveData<String>("MeineLocation") != null)
+            string mapAssetKey = this.Helper.Content.GetActualAssetKey("assets/myModMap2.tmx", ContentSource.ModFolder);
+            GameLocation location = new GameLocation(mapAssetKey, "YourLocationName") { IsOutdoors = true, IsFarm = false };
+
+            if (Helper.Data.ReadSaveData<String>("MeineLocation") != null || Game1.getLocationFromName("YourLocationName") != null)
             {
                 this.Monitor.Log($"{Game1.player.Name} Es wurde eine Save Datei gefunden JSON!", LogLevel.Warn);
                 String serializedString = Helper.Data.ReadSaveData<String>("MeineLocation");
@@ -197,8 +143,7 @@ namespace FirstStardewValleyMod
                 if (gameLocationStruct == null)
                     return;
 
-                string mapAssetKey = this.Helper.Content.GetActualAssetKey("assets/myModMap2.tmx", ContentSource.ModFolder);
-                GameLocation location = new GameLocation(mapAssetKey, "YourLocationName") { IsOutdoors = true, IsFarm = false };
+
 
                 load(location, gameLocationStruct);
                 Game1.locations.Add(location);
@@ -206,7 +151,81 @@ namespace FirstStardewValleyMod
                 return;
 
             }
+            else
+            {
+                string tilesheetPath = this.Helper.Content.GetActualAssetKey("assets/spring_outdoorsTileSheet.png", ContentSource.ModFolder);
 
+                TileSheet tilesheet = new TileSheet(
+                     id: "z_your-custom-spritesheet", // a unique ID for the tilesheet
+                    map: location.map,
+                    imageSource: tilesheetPath,
+                    sheetSize: new xTile.Dimensions.Size(25, 79), // the tile size of your tilesheet image.
+                    tileSize: new xTile.Dimensions.Size(16, 16) // should always be 16x16 for maps
+                );
+                location.map.AddTileSheet(tilesheet);
+                location.map.LoadTileSheets(Game1.mapDisplayDevice);
+
+                if (Helper.Data.ReadSaveData<String>("MeineLocation") == null)
+                {
+                    Random random = new Random();
+                    int[] alternativeGrasses = { 150, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, 255, 402, 402, 402, 402, 402, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, 175, 175, 175, 175, 175, 175, 275, 275, 275, 275, 275, 275, };
+                    for (int x = 0; x < 100; x++)
+                    {
+                        for (int y = 0; y < 100; y++)
+                        {
+                            int tileId = alternativeGrasses[random.Next(0, alternativeGrasses.Length - 1)];
+                            Layer layer1 = location.map.GetLayer("Back");
+
+                            layer1.Tiles[x, y] = new StaticTile(layer1, tilesheet, BlendMode.Alpha, tileIndex: tileId); // change tile index
+                            location.setTileProperty(x, y, "Back", "Diggable", "T");
+                        }
+                    }
+
+                    Layer layer = location.map.GetLayer("Buildings");
+                    for (int x = 0; x < 100; x++)
+                    {
+                        for (int y = 0; y < 100; y++)
+                        {
+                            if ((x == 0) || (y == 0) || (x == 99) || (y == 99))
+                            {
+                                layer.Tiles[x, y] = new StaticTile(layer, tilesheet, BlendMode.Alpha, tileIndex: 330); // change tile index
+                            }
+                        }
+                    }
+
+                    Game1.locations.Add(location);
+
+                    for (int i = 0; i < 20; i++)
+                    {
+                        try
+                        {
+                            Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Add(new Bush(new Vector2(random.Next() * 20, random.Next() * 20), 1, Game1.getLocationFromName("YourLocationName")));
+                            Game1.getLocationFromName("YourLocationName").terrainFeatures.Add(new Vector2(random.Next(1, 20), random.Next(1, 20)), new Tree(1, 3));
+                            // Game1.getLocationFromName("YourLocationName").setObjectAt()
+                            int x = random.Next(1, 20);
+                            int y = random.Next(1, 20);
+                            Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Add(new Bush(new Vector2(x, y), 1, Game1.getLocationFromName("YourLocationName")));
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        
+                    }
+                }
+                if (!this.LargeTerrainFeatureLocation.ContainsKey("YourLocationName"))
+                    this.LargeTerrainFeatureLocation.Add("YourLocationName", new LargeTerrainFeaturePairList());
+                int index = 0;
+                for (; (index < this.LargeTerrainFeatureLocation.Count()) && (!this.LargeTerrainFeatureLocation.Keys.ToArray()[index].Equals("YourLocationName")); index++)
+                { }
+
+                for (int i = 0; i < Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.Count(); i++)
+                {
+                    this.LargeTerrainFeatureLocation.Values.ToArray()[index].LargeterrainFeaturePairs.Add(new LargeTerrainFeaturePair(Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.ToArray()[i].tilePosition, Game1.getLocationFromName("YourLocationName").largeTerrainFeatures.ToArray()[i]));
+                }
+
+               
+            }
             this.Monitor.Log($"{Game1.player.Name} Es wurde KEINE Save Datei gefunden!", LogLevel.Warn);
         }
 
@@ -456,12 +475,13 @@ namespace FirstStardewValleyMod
                 }
             }
 
-            this.Monitor.Log($"{gameLocation.largeTerrainFeatures.ToList().Count} ist die Anzahl der TerrainFeatures beim saven!!", LogLevel.Warn);
+            this.Monitor.Log($"{gameLocation.largeTerrainFeatures.ToList().Count} ist die Anzahl der LargeTerrainFeatures beim saven!!", LogLevel.Warn);
 
             for (int i = 0; i < gameLocation.largeTerrainFeatures.ToList().Count; i++) //(SerializableDictionary<Vector2, TerrainFeature>.KeyCollection terrainFeature in gameLocation.terrainFeatures)
             {
                 //WTF?! My brain is fucked! LOL
-                gameLocationStruct.largeTerrainFeatures.Add(gameLocation.largeTerrainFeatures[i].tilePosition, gameLocation.largeTerrainFeatures[i]);
+                if(!gameLocationStruct.largeTerrainFeatures.ContainsKey(gameLocation.largeTerrainFeatures[i].currentTileLocation))
+                    gameLocationStruct.largeTerrainFeatures.Add(gameLocation.largeTerrainFeatures[i].currentTileLocation, gameLocation.largeTerrainFeatures[i]);
             }
 
 
