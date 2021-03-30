@@ -137,7 +137,7 @@ namespace FirstStardewValleyMod
                 GameLocationStruct gameLocationStruct;
                 using (TextReader reader = new StringReader(serializedString))
                 {
-                    gameLocationStruct = (GameLocationStruct)locationSerializer.Deserialize(reader);
+                    gameLocationStruct = (GameLocationStruct)locationSerializer.Deserialize(reader); //fehlerhaft!!!
                 }
 
                 if (gameLocationStruct == null)
@@ -458,7 +458,8 @@ namespace FirstStardewValleyMod
 
             for (int i = 0; i < gameLocation.terrainFeatures.Keys.ToList().Count; i++) //(SerializableDictionary<Vector2, TerrainFeature>.KeyCollection terrainFeature in gameLocation.terrainFeatures)
             {
-                gameLocationStruct.terrainFeatures.Add(gameLocation.terrainFeatures.Keys.ToList()[i], gameLocation.terrainFeatures.Values.ToList()[i]);
+                if(!gameLocationStruct.terrainFeatures.ContainsKey(gameLocation.terrainFeatures.Keys.ToList()[i]))
+                    gameLocationStruct.terrainFeatures.Add(gameLocation.terrainFeatures.Keys.ToList()[i], gameLocation.terrainFeatures.Values.ToList()[i]);
             }
 
 
@@ -469,8 +470,8 @@ namespace FirstStardewValleyMod
                     // TerrainFeatureLocation.Values.ToArray()[j].terrainFeature.Add(args.Added.ToArray()[0].Value);
                     for (int j = 0; j < LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs.Count(); j++)
                     {
-                        if (!gameLocationStruct.terrainFeatures.ContainsKey(LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].vector2))
-                            gameLocationStruct.terrainFeatures.Add(LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].vector2, LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].largeterrainFeature);
+                        if (!gameLocationStruct.largeTerrainFeatures.ContainsKey(LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].vector2))
+                            gameLocationStruct.largeTerrainFeatures.Add(LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].vector2, LargeTerrainFeatureLocation.Values.ToList()[i].LargeterrainFeaturePairs[j].largeterrainFeature);
                     }
                 }
             }

@@ -14,19 +14,19 @@ namespace FirstStardewValleyMod
         ** Properties
         *********/
         /// <summary>The tile layer.</summary>
-        public TileLayer Layer { get; }
+        public TileLayer Layer { set; get; }
 
         /// <summary>The tile layer name.</summary>
-        public string LayerName { get; }
+        public string LayerName { set; get; }
 
         /// <summary>The X tile coordinate.</summary>
-        public int X { get; }
+        public int X { set; get; }
 
         /// <summary>The Y tile coordinate.</summary>
-        public int Y { get; }
+        public int Y { set; get; }
 
         /// <summary>The tile ID in the tilesheet.</summary>
-        public int TileID { get; }
+        public int TileID { set; get; }
 
         /// <summary>The tilesheet for the <see cref="TileID"/>.</summary>
         public string Tilesheet { get; }
