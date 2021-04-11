@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstStardewValleyMod.terrainGenerator
+namespace FirstStardewValleyMod.datastructs
 {
-    class standardGenerator : locationGenerators.Generator
+    enum TileType
     {
+        grass, water, rock, tree
     }
 }

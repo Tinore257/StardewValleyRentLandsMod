@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstStardewValleyMod.terrainGenerator
+namespace FirstStardewValleyMod.datastructs
 {
-    class standardGenerator : locationGenerators.Generator
+    class PlaceEvaluation
     {
+        public int bewertung;
+        public int wert;
     }
 }
